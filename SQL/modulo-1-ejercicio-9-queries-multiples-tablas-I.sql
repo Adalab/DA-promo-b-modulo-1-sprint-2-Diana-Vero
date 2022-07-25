@@ -36,6 +36,8 @@ por esa cantidad de objetos, teniendo en cuenta los descuentos, etc. Ojo que los
 en porcentajes, 15% nos sale como 0.15.
 La tabla resultante será:*/
 
+
+
 /*BONUS: Pedidos que han realizado cada compañía y su fecha:
 Después de estas solicitudes desde UK y gracias a la utilidad de los resultados que se han obtenido, 
 desde la central nos han pedido una consulta que indique el nombre de cada compañia cliente junto con cada pedido 

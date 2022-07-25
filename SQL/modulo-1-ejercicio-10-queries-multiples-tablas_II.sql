@@ -26,3 +26,18 @@ ON orders.customer_id = customers.customer_id
 WHERE customers.country= "UK"
 GROUP BY customers.company_name;
 
+
+/*Empresas de UK y sus pedidos:
+También nos han pedido que obtengamos todos los nombres de las empresas cliente de Reino Unido 
+(tengan pedidos o no) junto con los ID de todos los pedidos que han realizado, 
+el nombre de contacto de cada empresa y la fecha del pedido.
+Los resultados de la query deberán ser: */
+
+
+
+
+/*Empleadas que sean de la misma ciudad:
+Ejercicio de SELF JOIN: Desde recursos humanos nos piden realizar una consulta que muestre por pantalla 
+los datos de todas las empleadas y sus supervisoras. Concretamente nos piden: la ubicación, nombre, 
+y apellido tanto de las empleadas como de las jefas. Investiga el resultado, ¿sabes decir quién es el director?
+La tabla resultado de la query deberá ser:*/
