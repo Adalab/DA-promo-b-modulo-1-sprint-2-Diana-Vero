@@ -43,14 +43,12 @@ Nuestro jefe nos pide que nos muestre todos los pedidos que contengan "Konbu".
 💡 Pista 💡 En esta query tendremos que combinar conocimientos adquiridos en las lecciones anteriores 
 como por ejemplo el INNER JOIN.*/
 
-SELECT product_id
-	SELECT products.product_id, products.product_name, order_details.order_id
-	FROM products
+SELECT *
+FROM orders AS pedidos
+WHERE order_id IN (
+	SELECT order_id
+    FROM products
 	INNER JOIN order_details
-	ON order_details.product_id = products.product_id;
+	ON order_details.product_id = products.product_id
+    WHERE product_name = 'Konbu');
 
-
-WHERE customer_id NOT IN (
-    SELECT order_date
-    FROM orders
-    WHERE YEAR(order_date) = 1997);

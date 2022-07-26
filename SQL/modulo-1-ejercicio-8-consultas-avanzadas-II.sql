@@ -51,12 +51,11 @@ HAVING NumeroEMpleadosPorCiudad >= 4;
 -- Necesitamos una consulta que clasifique los pedidos en dos categorías ("Alto" y "Bajo")
 -- en función de la cantidad monetaria total que han supuesto: por encima o por debajo de 2000 euros.
 
-
-
-
-SELECT 
+SELECT order_id, SUM(unit_price * quantity) AS 'Coste total',
 CASE   
-    WHEN salario < 2000 THEN "Bajo"   
-    ELSE "Alto"   
-    END AS RangoSalario   
-FROM empleadas;
+    WHEN SUM(unit_price * quantity) < 2000 THEN "Bajo"   
+    ELSE "Alto"  
+    END AS 'Costes'
+FROM order_details
+GROUP BY order_id;
+
