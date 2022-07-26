@@ -33,6 +33,16 @@ También nos han pedido que obtengamos todos los nombres de las empresas cliente
 el nombre de contacto de cada empresa y la fecha del pedido.
 Los resultados de la query deberán ser: */
 
+SELECT orders.order_id  AS"OrderID", customers.company_name AS NombreEmpresa, orders.order_date AS"FechaPedido"
+FROM customers
+RIGHT JOIN orders
+ON orders.customer_id = customers.customer_id
+UNION
+SELECT orders.order_id  AS"OrderID", customers.company_name AS NombreEmpresa, orders.order_date AS"FechaPedido"
+FROM customers
+LEFT JOIN orders
+ON orders.customer_id = customers.customer_id
+WHERE customers.country= "UK";
 
 
 
@@ -41,3 +51,7 @@ Ejercicio de SELF JOIN: Desde recursos humanos nos piden realizar una consulta q
 los datos de todas las empleadas y sus supervisoras. Concretamente nos piden: la ubicación, nombre, 
 y apellido tanto de las empleadas como de las jefas. Investiga el resultado, ¿sabes decir quién es el director?
 La tabla resultado de la query deberá ser:*/
+
+SELECT A.city AS ‘City’, A.first_name AS ‘NombreEmpleado’, A.last_name AS ‘Apellidoempleado’, B.city AS ‘City’, B.first_name AS ‘NombreJefe’, B.last_name AS ‘ApellidoJefe’
+FROM employees AS A, employees AS B
+WHERE B.employee_id = A.reports_to;

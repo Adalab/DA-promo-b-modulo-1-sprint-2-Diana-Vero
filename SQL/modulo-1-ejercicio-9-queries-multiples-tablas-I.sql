@@ -22,13 +22,14 @@ ha pedido cada empresa cliente de UK durante cada año. Nos piden concretamente 
 y la cantidad de objetos que han pedido. Para ello hará falta hacer 2 joins.
 El resultado será una tabla similar a esta:*/
 
-SELECT customers.company_name AS NombreEmpresa, YEAR(orders.order_date) AS Año, SUM (order_details.quantity )
-FROM orders
+SELECT customers.company_name, YEAR(order_date) AS "Año", SUM(quantity)
+FROM order_details
+INNER JOIN orders
+ON order_details.order_id= orders.order_id
 INNER JOIN customers
-INNER JOIN order_details
-ON customers.country = "UK"
-GROUP BY Año, NombreEmpresa;
-
+ON customers.customer_id=orders.customer_id
+WHERE customers.country = "UK"
+GROUP BY customers.customer_id,YEAR(order_date);
 
 /*Mejorad la query anterior:
 Lo siguiente que nos han pedido es la misma consulta anterior pero con la adición de la cantidad de dinero que han pedido 
@@ -36,7 +37,14 @@ por esa cantidad de objetos, teniendo en cuenta los descuentos, etc. Ojo que los
 en porcentajes, 15% nos sale como 0.15.
 La tabla resultante será:*/
 
-
+SELECT customers.company_name, YEAR(order_date) AS "Año", SUM(quantity) AS "Cantidad", SUM((unit_price*quantity)/(1+discount)) AS "DineroTotal"
+FROM order_details
+INNER JOIN orders
+ON order_details.order_id= orders.order_id
+INNER JOIN customers
+ON customers.customer_id=orders.customer_id
+WHERE customers.country = "UK"
+GROUP BY customers.customer_id,YEAR(order_date);
 
 /*BONUS: Pedidos que han realizado cada compañía y su fecha:
 Después de estas solicitudes desde UK y gracias a la utilidad de los resultados que se han obtenido, 
