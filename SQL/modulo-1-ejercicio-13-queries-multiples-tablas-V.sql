@@ -30,13 +30,23 @@ Por un extraño motivo, nuestro jefe quiere que le devolvamos una tabla con aque
 afincadas en ciudades que empiezan por "A" o "B". Necesita que le devolvamos la ciudad, 
 el nombre de la compañia y el nombre de contacto.
 Los resultados deberán ser:*/
-
+SELECT city, company_name, contact_name 
+FROM northwind.customers
+WHERE city LIKE 'A%' OR city LIKE 'B%';
 
 
 /*4. Número de pedidos que han hecho en las ciudades que empiezan con L.
 En este caso, nuestro objetivo es devolver los mismos campos que en la query anterior 
 el número de total de pedidos que han hecho todas las ciudades que empiezan por "L".
 Deberéis tener una tabla como la siguiente:*/
+
+SELECT DISTINCT customers.city AS Ciudad, customers.company_name AS Empresa, customers.contact_name AS persona_contacto, COUNT(orders.order_id) AS NumeroPedido
+FROM customers
+INNER JOIN orders
+ON orders.customer_id = customers.customer_id
+WHERE customers.city LIKE 'L%'
+GROUP BY customers.city, customers.company_name, customers.contact_name
+ORDER BY customers.company_name ASC;
 
 
 
@@ -45,10 +55,14 @@ Nuestro objetivo es extraer los clientes que no tienen el contacto "Sales" en su
 Extraer el nombre de contacto, su posisión (contact_title) y el nombre de la compañia.
 Los resultados son:*/
 
-
+SELECT contact_name, contact_title, company_name
+FROM customers
+WHERE contact_title NOT LIKE 'Sales%';
 
 /*6. Todos los clientes que no tengan una "A" en segunda posición en su nombre.
 Devolved unicamente el nombre de contacto.
 Los resultados son:*/
 
-
+SELECT contact_name
+FROM customers
+WHERE contact_name NOT LIKE '_A%';
